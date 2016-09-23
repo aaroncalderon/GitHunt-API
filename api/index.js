@@ -1,3 +1,9 @@
+import globalTunnel from 'global-tunnel'
+
+// we are relying on our proxy environment variables
+// e.g. console.log(process.env.http_proxy);
+globalTunnel.initialize();
+
 import path from 'path';
 import express from 'express';
 import { apolloExpress, graphiqlExpress } from 'apollo-server';
@@ -7,7 +13,7 @@ import {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
 } from './githubKeys';
-
+  
 import { setUpGitHubLogin } from './githubLogin';
 import { GitHubConnector } from './github/connector';
 import { Repositories, Users } from './github/models';

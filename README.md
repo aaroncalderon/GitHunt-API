@@ -53,3 +53,9 @@ Please submit a pull request if you see anything that can be improved!
   ```
 
 7. **Open the app.** Open http://localhost:3010/ to see what to do next.
+
+
+8. **I have added `config.js`**
+
+Working with `config/config.js`. This file is used to hold any values you may need to connect to a database.
+Its then loaded by __knex__ and I used the values held in the `_cfg` variable to connect to my db (mssql in my case).

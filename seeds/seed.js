@@ -83,22 +83,27 @@ export function seed(knex, Promise) {
   // Insert some entries for the repositories
   .then(() => {
     return Promise.all(repos.map(({ repository_name, posted_by }, i) => {
-      return knex('entries').insert({
-        created_at: Date.now() - i * 10000,
-        updated_at: Date.now() - i * 10000,
+      return knex('entries')
+      .returning('id')
+      .insert({
+        created_at: new Date(Date.now() - i * 10000).toISOString(),
+        updated_at: new Date(Date.now() - i * 10000).toISOString(),
         repository_name,
         posted_by,
       }).then(([id]) => {
-        repoIds[repository_name] = id;
-      });
-    }));
+        return repoIds[repository_name] = id;
+      })
+    })
+    );
   })
 
   // Insert some votes so that we can render a sorted feed
   .then(() => {
     return Promise.all(_.toPairs(votes).map(([repoName, voteMap]) => {
       return Promise.all(_.toPairs(voteMap).map(([username, vote_value]) => {
-        return knex('votes').insert({
+        return knex('votes')
+        .returning('id')
+        .insert({
           entry_id: repoIds[repoName],
           vote_value,
           username,
