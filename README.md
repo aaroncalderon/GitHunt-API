@@ -1,3 +1,9 @@
+\########################
+
+Trying to change the underlying DB abstraction library from `knex` to `sequelize`.
+
+\########################
+
 # GitHunt
 
 The Apollo Server backend shared by all Apollo client example apps.
