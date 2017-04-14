@@ -2,6 +2,8 @@
 
 Trying to change the underlying DB abstraction library from `knex` to `sequelize`.
 
+To Do: merge changes from original repo `https://github.com/apollographql/GitHunt-API`, then continue.
+
 \########################
 
 # GitHunt
